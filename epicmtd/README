@@ -1,0 +1,36 @@
+Recovery-appliable update.zips to (temporarily) kexec boot a kernel. 
+
+boot_zImage.zip:
+- Boots an /sdcard/zImage kernel.
+- Assumes an embedded initramfs, e.g., a stock or stock-based kernel.
+- Provides no "bootmode" parameter, i.e., a normal (init.rc) Android boot.
+
+boot_zImage_recovery.zip:
+- Boots a /sdcard/zImage kernel in "recovery mode".
+- Assumes an embedded initramfs, e.g., a stock or stock-based kernel.
+- Provides "bootmode=2", i.e., a recovery (recovery.rc) boot.
+
+boot_zImage_with_boot.zip:
+- Boots an /sdcard/zImage kernel with /sdcard/boot.cpio.gz initrd.
+- May be used with an extracted CM7/9 kernel, see below.
+
+boot_zImage_with_recovery.zip:
+- Boots an /sdcard/zImage kernel with /sdcard/recovery.cpio.gz initrd.
+- May be used with an extracted CM7/9 kernel, see below.
+
+
+Extracting a CM7/9 boot.img kernel:
+
+1. Locate a CM7/9 update.zip, e.g.,
+   update-cm-9-20120510-SNAPSHOT-epicmtd-beta3-signed.zip.
+
+2. Extract the boot.img from the update.zip, e.g.,
+
+   unzip update-cm-9-20120510-SNAPSHOT-epicmtd-beta3-signed.zip boot.img
+
+3. Extract the zImage, boot.cpio.gz, and recovery.cpio.gz:
+
+   eval `grep -Fam 1 -A 1 BOOT_IMAGE_OFFSETS boot.img | tail -n 1`
+   dd if=boot.img of=zImage bs=512 count="$boot_offset"
+   dd if=boot.img of=boot.cpio.gz bs=512 skip="$boot_offset" count="$boot_len"
+   dd if=boot.img of=recovery.cpio.gz bs=512 skip="$recovery_offset" count="$recovery_len"

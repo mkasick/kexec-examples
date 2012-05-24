@@ -1,0 +1,11 @@
+Recovery-appliable update.zips to (temporarily) kexec boot a kernel. 
+
+boot_zImage.zip:
+- Boots an /sdcard/zImage (external SD) kernel.
+- Assumes an embedded initramfs, e.g., a stock or stock-based kernel.
+- Provides no "bootmode" parameter, i.e., a normal (init.rc) Android boot.
+
+boot_zImage_recovery.zip:
+- Boots a /sdcard/zImage (external SD) kernel in "recovery mode".
+- Assumes an embedded initramfs, e.g., a stock or stock-based kernel.
+- Provides "bootmode=2", i.e., a recovery (recovery.rc) boot.
