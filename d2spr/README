@@ -1,9 +1,18 @@
 Recovery-appliable update.zips to (temporarily) kexec boot a kernel. 
 
-boot_boot_img.zip:
+boot_sdcard_boot_img.zip:
 - Boots an /sdcard/boot.img (external SD) kernel.
 - Assumes Android "boot.img" format with appended initrd.
 
-boot_recovery_img.zip:
+boot_sdcard_recovery_img.zip:
 - Boots an /sdcard/recovery.img (external SD) kernel.
 - Assumes Android "boot.img" format with appended initrd.
+
+boot_emmc_boot_img.zip:
+- Boots an /emmc/boot.img (internal SD) kernel.
+- Assumes Android "boot.img" format with appended initrd.
+
+boot_sdcard_recovery_img.zip:
+- Boots an /emmc/recovery.img (internal SD) kernel.
+- Assumes Android "boot.img" format with appended initrd.
+
